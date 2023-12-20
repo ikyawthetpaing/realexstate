@@ -10,8 +10,8 @@ export function SiteHeader() {
           <span>Mortage</span>
         </div>
         <div>
-          <h1 className="font-montserrat-alt font-extrabold text-2xl">
-            Estate
+          <h1 className="font-montserrat-alt font-extrabold text-2xl flex items-center gap-2">
+            <Icons.blocks className="h-7 w-7" /> Estate
           </h1>
         </div>
         <div className="hidden sm:flex gap-6">

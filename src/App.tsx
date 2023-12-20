@@ -1,40 +1,19 @@
 import { SiteHeader } from "@/components/site-header";
-import { homes } from "./config/house";
-import { Icons } from "./components/icons";
-import { cn } from "./lib/utils";
+import { homes } from "@/config/house";
+import { Icon, Icons } from "@/components/icons";
+import { cn } from "@/lib/utils";
+import { SocialMedia } from "@/types";
 
 export default function App() {
   return (
-    <main className="grid gap-24 pb-8">
+    <main className="grid gap-24">
       <HeroSection />
       <PropertyListingSection />
       <FinancialGuidanceSection />
       <NewlyListedHomesSection />
       <RealEstateMetricsSection />
       <HomeLoanSection />
-      <footer className="container">
-        <div className="rounded-3xl bg-blue-400 overflow-hidden">
-          <div className="mx-auto flex flex-col items-center gap-6 py-8">
-            <h2 className="text-5xl font-semibold font-montserrat-alt max-w-sm text-center">
-              Check Out A Neighboard
-            </h2>
-            <p className="max-w-xs text-center">
-              Lorem repellat ipsam! Nisi cumque ab reprehenderit dolor tenetur!
-            </p>
-            <div className="flex rounded-full overflow-hidden border w-max p-1 mx-auto bg-white">
-              <input
-                type="text"
-                placeholder="Enter city or zip code"
-                className="h-9 outline-none px-2 flex-1"
-              />
-              <button className="bg-slate-950 rounded-full px-5 text-white">
-                Search
-              </button>
-            </div>
-          </div>
-          <div className="bg-black h-96 rounded-t-3xl text-white p-8"></div>
-        </div>
-      </footer>
+      <Footer />
     </main>
   );
 }
@@ -44,15 +23,11 @@ function HeroSection() {
     <section className="bg-blue-400 pb-8 lg:min-h-screen">
       <SiteHeader />
       <div className="container text-white mt-12 space-y-24">
-        <h1 className="text-9xl font-montserrat-alt font-extrabold max-sm:text-7xl">
+        <h1 className="font-montserrat-alt font-extrabold text-6xl md:text-7xl lg:text-9xl">
           Homes <br /> That Match
         </h1>
         <div className="flex items-center justify-end gap-6">
-          <div className="flex">
-            <div className="h-16 aspect-square rounded-full bg-slate-400 border-4 border-white"></div>
-            <div className="h-16 aspect-square rounded-full bg-slate-400 border-4 border-white"></div>
-            <div className="h-16 aspect-square rounded-full bg-slate-400 border-4 border-white"></div>
-          </div>
+          <div className="h-20 aspect-square rounded-full bg-slate-400 border-2 border-white"></div>
           <p className="uppercase">
             Find a lender who can offer competitive mortage
           </p>
@@ -67,7 +42,7 @@ function HeroSection() {
               All catalog <Icons.moveRight className="h-5 w-5" />
             </button>
           </div>
-          <div className="p-3 rounded-3xl space-y-2 bg-gray-300">
+          <div className="p-4 rounded-3xl space-y-2 bg-gray-200">
             <h2 className="font-bold text-lg text-black ">Blaine Resdient</h2>
             <p className="text-gray-500 max-w-[200px]">
               Newtown, MA Real Estate& Homes For Sale
@@ -105,14 +80,15 @@ function PropertyListingSection() {
         ))}
       </div>
       <div className="px-8">
-        <div className="flex rounded-full overflow-hidden border w-max p-1 mx-auto">
+        <div className="flex rounded-full overflow-hidden border p-1 mx-auto max-w-sm bg-white w-full">
           <input
             type="text"
             placeholder="Enter city or zip code"
-            className="h-9 outline-none px-2 flex-1"
+            className="h-9 outline-none px-2 w-0 flex-1"
           />
-          <button className="bg-slate-950 rounded-full px-5 text-white">
-            Search
+          <button className="bg-slate-950 rounded-full sm:px-5 text-white flex gap-2 items-center px-3">
+            <Icons.search className="h-4 w-4" />
+            <span className="max-sm:hidden">Search</span>
           </button>
         </div>
       </div>
@@ -173,7 +149,7 @@ function FinancialGuidanceSection() {
     },
   ];
   return (
-    <section className="container flex gap-8 justify-between max-md:flex-col">
+    <section className="container flex gap-16 justify-between max-md:flex-col">
       <h2 className="text-4xl font-semibold font-montserrat-alt max-w-md">
         Discover How We Can Help You
       </h2>
@@ -183,7 +159,7 @@ function FinancialGuidanceSection() {
             <div className="flex gap-6">
               <div className="h-10 aspect-square rounded-full bg-black"></div>
               <div className="md:max-w-sm grid gap-2">
-                <h3 className="font-semibold text-lg">{item.title}</h3>
+                <h3 className="font-bold text-lg">{item.title}</h3>
                 <p className=" text-gray-500">{item.description}</p>
               </div>
               <div className="flex items-end">
@@ -232,7 +208,7 @@ function NewlyListedHomesSection() {
           </div>
         </div>
         <div className="bg-gray-500 rounded-3xl flex items-end justify-end p-8">
-          <div className="w-48 aspect-square bg-gray-400 rounded-3xl"></div>
+          <div className="max-w-[256px] w-full aspect-square bg-gray-400 rounded-3xl"></div>
         </div>
       </div>
     </section>
@@ -271,7 +247,7 @@ function HomeLoanSection() {
             Need A Home Loan?
           </h2>
           <div className="flex gap-4">
-            <div className="rounded-3xl p-4 bg-gray-200 grid gap-2 w-full sm:max-w-[200px]">
+            <div className="rounded-3xl p-4 bg-gray-200 flex flex-col justify-between gap-2 w-full sm:max-w-[200px]">
               <h3 className="text-lg font-medium">Get Free-Approved Now</h3>
               <div>
                 <button className="flex gap-2 items-center border border-black px-5 py-1 rounded-full">
@@ -279,7 +255,7 @@ function HomeLoanSection() {
                 </button>
               </div>
             </div>
-            <div className="rounded-3xl p-4 bg-gray-200 grid gap-2 w-full sm:max-w-[200px]">
+            <div className="rounded-3xl p-4 bg-gray-200 flex flex-col justify-between gap-2 w-full sm:max-w-[200px]">
               <h3 className="text-lg font-medium">Advertisting Disclosure</h3>
               <div>
                 <button className="flex gap-2 items-center border border-black px-5 py-1 rounded-full">
@@ -291,5 +267,153 @@ function HomeLoanSection() {
         </div>
       </div>
     </section>
+  );
+}
+
+function Footer() {
+  const footerLinks = [
+    {
+      title: "New Listing",
+      items: [
+        { label: "Alabama", href: "alabama" },
+        { label: "Alaska", href: "alaska" },
+        { label: "Arizona", href: "arizona" },
+        { label: "California", href: "california" },
+        { label: "Florida", href: "florida" },
+        { label: "Indiana", href: "indiana" },
+        { label: "Texas", href: "texas" },
+        { label: "New York", href: "new-york" },
+      ],
+    },
+    {
+      title: "Useful Links",
+      items: [
+        { label: "Subscriptions", href: "alabama" },
+        { label: "About Us", href: "alaska" },
+        { label: "Contact Us", href: "arizona" },
+        { label: "FAQ", href: "california" },
+        { label: "Privacy Policy", href: "florida" },
+        { label: "Terms of Service", href: "indiana" },
+        { label: "Shipping Policy", href: "texas" },
+        { label: "New York", href: "new-york" },
+      ],
+    },
+  ];
+  const footerNavItems = [
+    { label: "Buy", href: "buy" },
+    { label: "Rent", href: "rent" },
+    { label: "Mortgage", href: "mortgage" },
+    { label: "Saved Homes", href: "saved-homes" },
+    { label: "Saved Search", href: "saved-search" },
+  ];
+  const socidaMediaItems: SocialMedia[] = [
+    {
+      icon: "facebook",
+      href: "",
+    },
+    {
+      icon: "instagram",
+      href: "",
+    },
+    {
+      icon: "twitter",
+      href: "",
+    },
+    {
+      icon: "linkedin",
+      href: "",
+    },
+  ];
+  return (
+    <footer className="sm:container sm:pb-8">
+      <div className="rounded-3xl max-sm:rounded-b-none bg-blue-400 overflow-hidden">
+        <div className="mx-auto flex flex-col items-center gap-6 p-8">
+          <h2 className="text-4xl sm:text-5xl font-semibold font-montserrat-alt max-w-sm text-center">
+            Check Out A Neighboard
+          </h2>
+          <p className="max-w-xs text-center text-gray-600">
+            Lorem repellat ipsam! Nisi cumque ab reprehenderit dolor tenetur!
+          </p>
+          <div className="flex rounded-full overflow-hidden border p-1 mx-auto max-w-sm bg-white w-full">
+            <input
+              type="text"
+              placeholder="Enter city or zip code"
+              className="h-9 outline-none px-2 w-0 flex-1"
+            />
+            <button className="bg-slate-950 rounded-full sm:px-5 text-white flex gap-2 items-center px-3">
+              <Icons.search className="h-4 w-4" />
+              <span className="max-sm:hidden">Search</span>
+            </button>
+          </div>
+        </div>
+        <div className="bg-black rounded-t-3xl text-white p-8 grid gap-16">
+          <div className="flex gap-16 max-sm:flex-col justify-between">
+            <div className="flex flex-col gap-8">
+              <h1 className="font-montserrat-alt font-extrabold text-3xl flex items-center gap-2">
+                <Icons.blocks className="h-8 w-8" /> Estate
+              </h1>
+              <div className="flex gap-6">
+                {socidaMediaItems.map((item, index) => (
+                  <div key={index}>
+                    <Icon name={item.icon} className="h-6 w-6 text-gray-400" />
+                  </div>
+                ))}
+              </div>
+            </div>
+            <div className="flex flex-wrap justify-end gap-16">
+              {footerLinks.map((footerLink, index) => (
+                <div key={index} className="flex flex-col gap-2">
+                  <h3 className="font-bold uppercase">{footerLink.title}</h3>
+                  <div className="flex flex-col">
+                    {footerLink.items.map((item, index) => (
+                      <span
+                        key={index}
+                        className="font-extralight hover:underline underline-offset-4"
+                      >
+                        {item.label}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              ))}
+              <div className="flex flex-col gap-6">
+                <div className="flex flex-col gap-2">
+                  <h3 className="font-bold uppercase">Newsletter</h3>
+                  <p className="font-extralight">
+                    Sign up for exclusive offers and news.
+                  </p>
+                </div>
+                <div className="flex gap-2 items-center border-b border-b-gray-300 justify-between pb-2">
+                  <input
+                    type="email"
+                    placeholder="Enter email"
+                    className="bg-transparent outline-none"
+                  />
+                  <button>
+                    <Icons.moveRight className="h-4 w-4" />
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="flex justify-between flex-wrap gap-8">
+            <p className="uppercase font-extralight">
+              Copyright © {new Date().getFullYear()} Real Xstate. All rights
+              reserved
+            </p>
+            <div className="flex gap-6 flex-wrap">
+              {footerNavItems.map((item, index) => (
+                <span
+                  key={index}
+                  className="uppercase font-extralight hover:underline underline-offset-4"
+                >
+                  {item.label}
+                </span>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
   );
 }
