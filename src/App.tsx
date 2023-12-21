@@ -2,7 +2,10 @@ import { SiteHeader } from "@/components/site-header";
 import { homes } from "@/config/house";
 import { Icon, Icons } from "@/components/icons";
 import { cn } from "@/lib/utils";
-import { SocialMedia } from "@/types";
+import { IconType, SocialMedia } from "@/types";
+import skyscraper from "@/assets/skyscraper.jpg";
+import houses from "@/assets/houses.jpg";
+import asset_mg from "@/assets/asset-management.jpg";
 
 export default function App() {
   return (
@@ -20,18 +23,15 @@ export default function App() {
 
 function HeroSection() {
   return (
-    <section className="bg-blue-400 pb-8 lg:min-h-screen">
+    <section className="bg-blue-400 pb-8 grid gap-24">
       <SiteHeader />
-      <div className="container text-white mt-12 space-y-24">
+      <div className="container text-white grid gap-24">
         <h1 className="font-montserrat-alt font-extrabold text-6xl md:text-7xl lg:text-9xl">
           Homes <br /> That Match
         </h1>
-        <div className="flex items-center justify-end gap-6">
-          <div className="h-20 aspect-square rounded-full bg-slate-400 border-2 border-white"></div>
-          <p className="uppercase">
-            Find a lender who can offer competitive mortage
-          </p>
-        </div>
+        <p className="uppercase">
+          Find a lender who can offer competitive mortage
+        </p>
         <div className="flex justify-between sm:items-end max-sm:flex-col gap-8">
           <div className="grid w-max gap-6">
             <Icons.sparkle className="h-16 w-16" />
@@ -96,7 +96,13 @@ function PropertyListingSection() {
         <div className="flex gap-8 lg:container overflow-x-scroll px-8 no-scrollbar">
           {homes.map((home, index) => (
             <div key={index} className="grid gap-4 lg:w-full">
-              <div className="min-w-[256px] aspect-square rounded-3xl bg-slate-200"></div>
+              <div className="min-w-[256px] aspect-square rounded-3xl bg-slate-200 overflow-hidden">
+                <img
+                  src={home.imageUrl}
+                  alt={home.location}
+                  className="w-full h-full object-cover"
+                />
+              </div>
               <div className="flex gap-4 justify-between items-center">
                 <h2 className="text-lg font-medium">{home.location}</h2>
                 <p className="bg-gray-300 py-1 px-3 rounded-full text-sm font-medium">
@@ -131,18 +137,25 @@ function PropertyListingSection() {
 }
 
 function FinancialGuidanceSection() {
-  const financialGuidanceItems = [
+  const financialGuidanceItems: {
+    title: string;
+    description: string;
+    icon: IconType;
+  }[] = [
     {
+      icon: "wallet",
       title: "Find Out How Much You Can Afford",
       description:
         "We'll help you estimate your budget range. Save to your buyer profile to help in your search.",
     },
     {
+      icon: "circleDollarSign",
       title: "Understand Your Monthly Costs",
       description:
         "Get an in-depth look at what your monthly and closing costs will look like based on your financial situations and goals.",
     },
     {
+      icon: "scroll",
       title: "Get Help With Your Down Payment",
       description:
         "You make be able to buy a home with just 3.5% down. Saving for that can be chanllenging.",
@@ -157,7 +170,9 @@ function FinancialGuidanceSection() {
         {financialGuidanceItems.map((item, index) => (
           <div key={index} className="border-b pb-6">
             <div className="flex gap-6">
-              <div className="h-10 aspect-square rounded-full bg-black"></div>
+              <div className="h-10 aspect-square rounded-full bg-black flex justify-center items-center">
+                <Icon name={item.icon} className="w-5 h-5 text-white" />
+              </div>
               <div className="md:max-w-sm grid gap-2">
                 <h3 className="font-bold text-lg">{item.title}</h3>
                 <p className=" text-gray-500">{item.description}</p>
@@ -179,8 +194,8 @@ function NewlyListedHomesSection() {
   return (
     <section className="container">
       <div className="bg-black rounded-3xl p-8 grid grid-cols-2 gap-8 max-sm:grid-cols-1">
-        <div className="text-white grid gap-10">
-          <div className="grid gap-4">
+        <div className="text-white flex flex-col gap-20">
+          <div className="flex flex-col gap-4">
             <h2 className="text-5xl font-semibold font-montserrat-alt max-w-md">
               Newly Listed Homes{" "}
               <span className="text-gray-500">In Newton</span>
@@ -192,7 +207,7 @@ function NewlyListedHomesSection() {
               tempora. Id velit nulla nihil ratione sunt cum.
             </p>
           </div>
-          <div className="grid gap-2">
+          <div className="flex flex-col gap-2">
             <div className="flex justify-between px-4 py-2 bg-zinc-900 rounded-full">
               <p>Agent Listing</p>
               <p className="text-gray-500">(2.981)</p>
@@ -207,9 +222,13 @@ function NewlyListedHomesSection() {
             </div>
           </div>
         </div>
-        <div className="bg-gray-500 rounded-3xl flex items-end justify-end p-8">
-          <div className="max-w-[256px] w-full aspect-square bg-gray-400 rounded-3xl"></div>
-        </div>
+        <div
+          className="rounded-3xl aspect-square"
+          style={{
+            backgroundImage: `url(${skyscraper})`,
+            backgroundSize: "cover",
+          }}
+        ></div>
       </div>
     </section>
   );
@@ -239,9 +258,17 @@ function RealEstateMetricsSection() {
 function HomeLoanSection() {
   return (
     <section className="container">
-      <div className="grid sm:grid-cols-2 gap-8">
-        <div className="bg-gray-200 rounded-full min-h-[256px]"></div>
-        <div className="grid gap-8">
+      <div className="flex max-sm:flex-col justify-center gap-16">
+        <div
+          className="rounded-full aspect-square sm:max-w-xs w-full h-min"
+          style={{
+            backgroundImage: `url(${asset_mg})`,
+            backgroundSize: "contain",
+            backgroundPosition: "center",
+            backgroundRepeat: "no-repeat",
+          }}
+        ></div>
+        <div className="flex flex-col gap-8">
           <Icons.sparkle className="h-16 w-16" />
           <h2 className="text-5xl font-semibold font-montserrat-alt">
             Need A Home Loan?
@@ -326,8 +353,15 @@ function Footer() {
   ];
   return (
     <footer className="sm:container sm:pb-8">
-      <div className="rounded-3xl max-sm:rounded-b-none bg-blue-400 overflow-hidden">
-        <div className="mx-auto flex flex-col items-center gap-6 p-8">
+      <div className="rounded-3xl max-sm:rounded-b-none bg-black overflow-hidden">
+        <div
+          className="mx-auto flex flex-col items-center gap-6 py-16 px-8 rounded-b-3xl"
+          style={{
+            backgroundImage: `url(${houses})`,
+            backgroundPosition: "bottom",
+            backgroundSize: "cover",
+          }}
+        >
           <h2 className="text-4xl sm:text-5xl font-semibold font-montserrat-alt max-w-sm text-center">
             Check Out A Neighboard
           </h2>
@@ -346,7 +380,7 @@ function Footer() {
             </button>
           </div>
         </div>
-        <div className="bg-black rounded-t-3xl text-white p-8 grid gap-16">
+        <div className="text-white p-8 grid gap-16">
           <div className="flex gap-16 max-sm:flex-col justify-between">
             <div className="flex flex-col gap-8">
               <h1 className="font-montserrat-alt font-extrabold text-3xl flex items-center gap-2">

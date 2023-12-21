@@ -14,10 +14,10 @@ export function SiteHeader() {
             <Icons.blocks className="h-7 w-7" /> Estate
           </h1>
         </div>
-        <div className="hidden sm:flex gap-6">
+        <div className="hidden sm:flex gap-6 items-center">
           <span>Saved</span>
           <span>Login</span>
-          <span>Sign Up</span>
+          <span className="bg-black px-5 py-1 rounded-full">Sign Up</span>
         </div>
         <div className="sm:hidden">
           <Icons.menu className="h-7 w-7" />

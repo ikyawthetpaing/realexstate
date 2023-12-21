@@ -12,6 +12,9 @@ import {
   Twitter,
   Blocks,
   Search,
+  Wallet,
+  CircleDollarSign,
+  Scroll,
   LucideProps,
 } from "lucide-react";
 
@@ -28,6 +31,9 @@ export const Icons = {
   twitter: Twitter,
   blocks: Blocks,
   search: Search,
+  wallet: Wallet,
+  circleDollarSign: CircleDollarSign,
+  scroll: Scroll,
 };
 
 interface IconProps extends LucideProps {
