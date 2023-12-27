@@ -23,7 +23,7 @@ export default function App() {
 
 function HeroSection() {
   return (
-    <section className="bg-blue-400 pb-8 grid gap-24">
+    <section className="bg-blue-400 pb-8 grid gap-24 min-h-screen">
       <SiteHeader />
       <div className="container text-white grid gap-24">
         <h1 className="font-montserrat-alt font-extrabold text-6xl md:text-7xl lg:text-9xl">
