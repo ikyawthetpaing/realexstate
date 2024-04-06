@@ -1,11 +1,8 @@
 import { SiteHeader } from "@/components/site-header";
 import { Icon, Icons } from "@/components/icons";
 import { cn } from "@/lib/utils";
-import { Home, IconType, SocialMedia } from "@/types";
-import skyscraper from "@/assets/skyscraper.jpg";
-import houses from "@/assets/houses.jpg";
-import asset_mg from "@/assets/asset-management.jpg";
-import { useEffect, useState } from "react";
+import { IconType, SocialMedia } from "@/types";
+import { homes } from "@/config/home";
 
 export default function App() {
   return (
@@ -59,13 +56,6 @@ function HeroSection() {
 
 function PropertyListingSection() {
   const propertyCategories = ["Buy", "Rent", "Sold"];
-  const [homes, setHomes] = useState<Home[]>([]);
-  useEffect(() => {
-    fetch("/api/homes", { method: "GET" })
-      .then((res) => res.json())
-      .then((data) => setHomes(data.homes))
-      .catch((err) => console.log(err));
-  }, []);
   return (
     <section className="grid gap-8 max-w-[100vw] overflow-hidden">
       <div className="flex justify-center px-8">
@@ -101,7 +91,7 @@ function PropertyListingSection() {
       </div>
       <div className="grid gap-8">
         <div className="flex gap-8 lg:container overflow-x-scroll px-8 no-scrollbar">
-          {homes
+          {homes.length > 0
             ? homes.map((home, index) => (
                 <div key={index} className="grid gap-4 lg:w-full">
                   <div className="min-w-[256px] aspect-square rounded-3xl bg-slate-200 overflow-hidden">
@@ -234,7 +224,7 @@ function NewlyListedHomesSection() {
         <div
           className="rounded-3xl aspect-square"
           style={{
-            backgroundImage: `url(${skyscraper})`,
+            backgroundImage: `url("/images/skyscraper.jpg")`,
             backgroundSize: "cover",
           }}
         ></div>
@@ -271,7 +261,7 @@ function HomeLoanSection() {
         <div
           className="rounded-full aspect-square sm:max-w-xs w-full h-min"
           style={{
-            backgroundImage: `url(${asset_mg})`,
+            backgroundImage: `url("/images/asset-management.jpg")`,
             backgroundSize: "contain",
             backgroundPosition: "center",
             backgroundRepeat: "no-repeat",
@@ -366,7 +356,7 @@ function Footer() {
         <div
           className="mx-auto flex flex-col items-center gap-6 py-16 px-8 rounded-b-3xl"
           style={{
-            backgroundImage: `url(${houses})`,
+            backgroundImage: `url("/images/houses.jpg")`,
             backgroundPosition: "bottom",
             backgroundSize: "cover",
           }}
